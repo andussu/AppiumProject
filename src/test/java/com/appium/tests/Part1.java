@@ -6,6 +6,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -40,13 +41,13 @@ public class Part1 {
 
         //Calculate 2+3 is returning 5
         MobileElement digit2 = driver.findElement(By.id("com.android.calculator2:id/digit_2"));
-        MobileElement plusSign = driver.findElement(MobileBy.AccessibilityId("plus"));
+        MobileElement plus = driver.findElement(MobileBy.AccessibilityId("plus"));
         MobileElement digit3 = driver.findElement(By.id("com.android.calculator2:id/digit_3"));
         MobileElement equals = driver.findElement(MobileBy.AccessibilityId("equals"));
         MobileElement result = driver.findElement(By.id("com.android.calculator2:id/result"));
 
         digit2.click();
-        plusSign.click();
+        plus.click();
         digit3.click();
         equals.click();
 
@@ -54,6 +55,23 @@ public class Part1 {
         String resultText = result.getText();
         Assert.assertEquals(resultText,"5");
 
+
+        //verify 4 * 5 = 20
+        MobileElement digit4 = driver.findElement(By.id("com.android.calculator2:id/digit_4"));
+        MobileElement multiply = driver.findElement(MobileBy.AccessibilityId("multiply"));
+        MobileElement digit5 = driver.findElement(By.id("com.android.calculator2:id/digit_5"));
+        MobileElement clear = driver.findElement(MobileBy.AccessibilityId("clear"));
+
+        clear.click();
+        Thread.sleep(2000);
+
+        digit4.click();
+        multiply.click();
+        digit5.click();
+        equals.click();
+        Thread.sleep(2000);
+        resultText = result.getText();
+        Assert.assertEquals(resultText,"20");
 
         //close the app at the end
         driver.closeApp();
